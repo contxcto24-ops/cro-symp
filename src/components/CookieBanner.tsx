@@ -54,7 +54,20 @@ export function CookieBanner({ onNavigate, isOpenExternal, onCloseExternal }: Co
     if (onCloseExternal) {
       onCloseExternal();
     }
+    if (typeof window !== 'undefined') {
+      window.dispatchEvent(new CustomEvent('crochetsimply-cookie-update'));
+    }
   };
+
+  useEffect(() => {
+    const handleOpenModal = () => {
+      setShowConfigModal(true);
+    };
+    window.addEventListener('crochetsimply-open-cookie-modal', handleOpenModal);
+    return () => {
+      window.removeEventListener('crochetsimply-open-cookie-modal', handleOpenModal);
+    };
+  }, []);
 
   const handleAcceptAll = () => {
     saveConsent(true, true);

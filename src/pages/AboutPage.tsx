@@ -1,6 +1,7 @@
 import React from 'react';
 import { Heart, Sparkles, Feather, Users, Compass, BookOpen } from 'lucide-react';
 import { AUTHORS } from '../data/articles';
+import { AUTHOR_PROFILE, isAuthorConfigured } from '../config/author';
 import { SeoHead } from '../components/SeoHead';
 import { Breadcrumbs } from '../components/Breadcrumbs';
 import { ResponsiveImage } from '../components/ResponsiveImage';
@@ -76,75 +77,60 @@ export function AboutPage({ onNavigate }: AboutPageProps) {
           </div>
         </section>
 
-        {/* EL EQUIPO */}
-        <section aria-labelledby="equipo-heading" className="space-y-6">
-          <div className="text-center space-y-1">
-            <span className="text-xs uppercase tracking-widest font-semibold text-[#8FA998]">
-              Las manos tejedores
-            </span>
-            <h2 id="equipo-heading" className="font-heading font-bold text-2xl sm:text-3xl text-[#3D352E]">
-              Conoce al equipo de crochetsimply
-            </h2>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 pt-2">
-            {/* Clara */}
-            <div className="bg-white p-6 rounded-2xl border border-[#E8DDD0] space-y-4 flex flex-col justify-between">
-              <div className="space-y-3">
-                <div className="flex items-center gap-3.5">
-                  <img
-                    src={AUTHORS.clara.avatar}
-                    alt={AUTHORS.clara.name}
-                    className="w-14 h-14 rounded-full object-cover border-2 border-[#8FA998]"
-                    referrerPolicy="no-referrer"
-                  />
-                  <div>
-                    <h3 className="font-heading font-bold text-lg text-[#3D352E]">
-                      {AUTHORS.clara.name}
-                    </h3>
-                    <p className="text-xs text-[#8FA998] font-medium">
-                      {AUTHORS.clara.role}
-                    </p>
-                  </div>
-                </div>
-                <p className="text-xs sm:text-sm text-[#6B5C4F] leading-relaxed">
-                  "Empecé a tejer cuando necesitaba desconectar del estrés del trabajo frente a la pantalla. Crear amigurumis me devolvió la ilusión de regalar algo hecho con mis manos. Mi meta es que cualquier novata logre su primer muñeco sin frustración."
-                </p>
-              </div>
-              <div className="pt-3 border-t border-[#F5EDE3] text-xs text-[#8C7A6B]">
-                Especialidad: Técnicas circulares, espirales, aumentos invisibles y bordado.
-              </div>
+        {/* EL EQUIPO / AUTORA */}
+        {isAuthorConfigured(AUTHOR_PROFILE) && (
+          <section aria-labelledby="equipo-heading" className="space-y-6">
+            <div className="text-center space-y-1">
+              <span className="text-xs uppercase tracking-widest font-semibold text-[#8FA998]">
+                La autora detrás del blog
+              </span>
+              <h2 id="equipo-heading" className="font-heading font-bold text-2xl sm:text-3xl text-[#3D352E]">
+                {AUTHOR_PROFILE.name || 'Sobre la autora'}
+              </h2>
             </div>
 
-            {/* Sofía */}
-            <div className="bg-white p-6 rounded-2xl border border-[#E8DDD0] space-y-4 flex flex-col justify-between">
-              <div className="space-y-3">
-                <div className="flex items-center gap-3.5">
+            <div className="bg-white p-6 sm:p-8 rounded-2xl border border-[#E8DDD0] space-y-6">
+              <div className="flex flex-col sm:flex-row items-center sm:items-start gap-6">
+                {AUTHOR_PROFILE.avatar && (
                   <img
-                    src={AUTHORS.sofia.avatar}
-                    alt={AUTHORS.sofia.name}
-                    className="w-14 h-14 rounded-full object-cover border-2 border-[#8FA998]"
+                    src={AUTHOR_PROFILE.avatar}
+                    alt={AUTHOR_PROFILE.name || 'Foto de la autora'}
+                    className="w-24 h-24 sm:w-28 sm:h-28 rounded-full object-cover border-2 border-[#8FA998] shrink-0"
                     referrerPolicy="no-referrer"
                   />
-                  <div>
-                    <h3 className="font-heading font-bold text-lg text-[#3D352E]">
-                      {AUTHORS.sofia.name}
+                )}
+                <div className="space-y-3 text-center sm:text-left">
+                  {AUTHOR_PROFILE.name && (
+                    <h3 className="font-heading font-bold text-xl text-[#3D352E]">
+                      {AUTHOR_PROFILE.name}
                     </h3>
-                    <p className="text-xs text-[#8FA998] font-medium">
-                      {AUTHORS.sofia.role}
+                  )}
+                  {AUTHOR_PROFILE.role && (
+                    <p className="text-xs text-[#8FA998] font-semibold uppercase tracking-wider">
+                      {AUTHOR_PROFILE.role}
                     </p>
-                  </div>
+                  )}
+                  {AUTHOR_PROFILE.shortBio && (
+                    <p className="text-sm sm:text-base text-[#6B5C4F] leading-relaxed">
+                      {AUTHOR_PROFILE.shortBio}
+                    </p>
+                  )}
                 </div>
-                <p className="text-xs sm:text-sm text-[#6B5C4F] leading-relaxed">
-                  "Vengo del mundo del patronaje y me enamoré de la versatilidad del ganchillo para construir prendas con caída y texturas sorprendentes. Me apasiona enseñar cómo adaptar las medidas a cualquier cuerpo sin fórmulas imposibles."
-                </p>
               </div>
-              <div className="pt-3 border-t border-[#F5EDE3] text-xs text-[#8C7A6B]">
-                Especialidad: Prendas de verano, calados de fantasía, bloqueos y fibras naturales.
-              </div>
+
+              {AUTHOR_PROFILE.crochetExperience && (
+                <div className="pt-4 border-t border-[#F5EDE3] space-y-2">
+                  <h4 className="font-heading font-semibold text-sm text-[#3D352E]">
+                    Mi experiencia con el crochet
+                  </h4>
+                  <p className="text-xs sm:text-sm text-[#6B5C4F] leading-relaxed whitespace-pre-line">
+                    {AUTHOR_PROFILE.crochetExperience}
+                  </p>
+                </div>
+              )}
             </div>
-          </div>
-        </section>
+          </section>
+        )}
 
         {/* NUESTROS COMPROMISOS */}
         <section aria-labelledby="compromisos-heading" className="space-y-6 pt-4">

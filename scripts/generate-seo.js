@@ -6,7 +6,7 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 // Dominio centralizado: lee directamente de src/config/site.ts para editarse en un solo sitio
-let BASE_URL = 'https://crochetsimply.online';
+let BASE_URL = 'https://www.crochetsimply.online';
 try {
   const siteConfigRaw = fs.readFileSync(path.resolve(__dirname, '../src/config/site.ts'), 'utf-8');
   const match = siteConfigRaw.match(/DEFAULT_SITE_DOMAIN\s*=\s*['"]([^'"]+)['"]/);

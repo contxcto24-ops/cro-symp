@@ -1,13 +1,62 @@
-import React from 'react';
-import { Sparkles } from 'lucide-react';
+import React, { useState, useEffect } from 'react';
+import { Sparkles, Cookie } from 'lucide-react';
+import { hasAdvertisingConsent, COOKIE_STORAGE_KEY } from '../utils/cookieConsent';
 
 interface AdSlotProps {
   type: 'header' | 'in-article' | 'sidebar';
   className?: string;
   adId?: string;
+  onOpenCookiesConfig?: () => void;
 }
 
-export function AdSlot({ type, className = '', adId }: AdSlotProps) {
+export function AdSlot({ type, className = '', adId, onOpenCookiesConfig }: AdSlotProps) {
+  const [hasConsent, setHasConsent] = useState<boolean>(() => hasAdvertisingConsent());
+
+  useEffect(() => {
+    const handleConsentChange = () => {
+      setHasConsent(hasAdvertisingConsent());
+    };
+
+    window.addEventListener('storage', handleConsentChange);
+    window.addEventListener('crochetsimply-cookie-update', handleConsentChange);
+    return () => {
+      window.removeEventListener('storage', handleConsentChange);
+      window.removeEventListener('crochetsimply-cookie-update', handleConsentChange);
+    };
+  }, []);
+
+  // Block ad scripts/slots until advertising cookie consent is granted
+  if (!hasConsent) {
+    return (
+      <aside
+        aria-label="Anuncio bloqueado por privacidad"
+        className={`my-4 px-4 no-print ${className}`}
+      >
+        <div className="bg-[#FAF4ED] border border-dashed border-[#DFCFC1] rounded-xl p-4 text-center flex flex-col items-center justify-center min-h-[90px] relative">
+          <div className="flex items-center gap-2 text-xs text-[#6B5C4F]">
+            <Cookie className="w-4 h-4 text-[#8FA998]" />
+            <span className="font-medium">
+              Anuncios publicitarios bloqueados según tus preferencias de cookies.
+            </span>
+          </div>
+          <button
+            type="button"
+            onClick={() => {
+              if (onOpenCookiesConfig) {
+                onOpenCookiesConfig();
+              } else {
+                window.dispatchEvent(new CustomEvent('crochetsimply-open-cookie-modal'));
+              }
+            }}
+            className="mt-2 text-xs text-[#8FA998] hover:text-[#7D9786] font-semibold underline"
+          >
+            Aceptar cookies de publicidad para ver anuncios patrocinados
+          </button>
+        </div>
+      </aside>
+    );
+  }
+
   if (type === 'header') {
     return (
       <aside
@@ -16,12 +65,12 @@ export function AdSlot({ type, className = '', adId }: AdSlotProps) {
       >
         <div className="bg-[#FAF4ED] border border-dashed border-[#DFCFC1] rounded-lg p-2.5 text-center flex flex-col items-center justify-center min-h-[70px] sm:min-h-[90px] relative transition-colors hover:border-[#C4B1A0]">
           <span className="text-[10px] tracking-widest uppercase font-semibold text-[#8C7A6B] mb-1">
-            Publicidad
+            Publicidad Patrocinada
           </span>
           <div className="flex items-center gap-2 text-xs text-[#6B5C4F]">
             <Sparkles className="w-3.5 h-3.5 text-[#C88A7D]" />
             <span className="font-medium text-xs sm:text-sm">
-              Espacio publicitario disponible: Leaderboard (728×90 / 320×50)
+              Espacio publicitario activo: Leaderboard (728×90 / 320×50)
             </span>
           </div>
           <p className="text-[11px] text-[#A39284] mt-0.5 hidden sm:block">
@@ -49,10 +98,6 @@ export function AdSlot({ type, className = '', adId }: AdSlotProps) {
             <p className="text-xs text-[#7A6B5F] leading-relaxed mb-3">
               Llega a miles de aficionadas al crochet y amigurumi cada mes con un anuncio destacado dentro de nuestros patrones más leídos.
             </p>
-            <div className="inline-flex items-center gap-1.5 text-[11px] font-medium text-[#B86B5D] hover:underline cursor-pointer">
-              <span>Información sobre tarifas y formatos patrocinados</span>
-              <span aria-hidden="true">→</span>
-            </div>
           </div>
         </div>
       </aside>
@@ -78,16 +123,6 @@ export function AdSlot({ type, className = '', adId }: AdSlotProps) {
         <p className="text-xs text-[#7A6B5F] leading-relaxed px-2 mb-3">
           Banner lateral de alta visibilidad para mercerías, libros de patrones y kits de ganchillo.
         </p>
-        <button
-          type="button"
-          onClick={() => {
-            window.location.hash = '#contacto';
-            window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
-          }}
-          className="text-xs font-medium px-3.5 py-1.5 bg-[#E8DDD0] hover:bg-[#DFCFC1] text-[#4A3E34] rounded-md transition-colors"
-        >
-          Consultar disponibilidad
-        </button>
       </div>
     </aside>
   );

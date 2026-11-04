@@ -134,7 +134,16 @@ export function Footer({ onNavigate, onOpenCookiesConfig }: FooterProps) {
                   onClick={() => onNavigate('/politica-de-privacidad')}
                   className="hover:text-[#3D352E] hover:underline transition-colors text-left"
                 >
-                  Privacidad
+                  Política de privacidad
+                </button>
+              </li>
+              <li>
+                <button
+                  type="button"
+                  onClick={() => onNavigate('/politica-de-cookies')}
+                  className="hover:text-[#3D352E] hover:underline transition-colors text-left"
+                >
+                  Política de cookies
                 </button>
               </li>
               <li>
@@ -143,7 +152,7 @@ export function Footer({ onNavigate, onOpenCookiesConfig }: FooterProps) {
                   onClick={onOpenCookiesConfig}
                   className="text-[#8FA998] hover:text-[#7B9684] font-medium underline transition-colors text-left"
                 >
-                  Cookies
+                  Configurar cookies
                 </button>
               </li>
             </ul>

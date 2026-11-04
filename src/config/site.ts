@@ -6,7 +6,7 @@
  * 
  * También puedes sobreescribirla en producción configurando la variable de entorno VITE_SITE_URL.
  */
-export const DEFAULT_SITE_DOMAIN = 'https://crochetsimply.online';
+export const DEFAULT_SITE_DOMAIN = 'https://www.crochetsimply.online';
 
 export const SITE_DOMAIN = (
   (typeof import.meta !== 'undefined' && import.meta.env && import.meta.env.VITE_SITE_URL) ||

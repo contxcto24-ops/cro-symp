@@ -62,6 +62,8 @@ export interface Article {
   readingTime: string;
   date: string;
   isoDate: string;
+  updatedDate?: string;
+  isoUpdatedDate?: string;
   author: Author;
   heroImage: string;
   imageAlt: string;
@@ -77,6 +79,7 @@ export interface Article {
   commonMistakes?: CommonMistakeItem[];
   faqs?: FaqItem[];
   expertTip?: string;
+  personalTip?: string;
   relatedSlugs: string[];
 }
 

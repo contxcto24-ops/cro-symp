@@ -56,9 +56,18 @@ export function SeoHead({
     const canonicalUrl = `${SITE_DOMAIN}${cleanSubPath}`;
 
     const defaultImage = `${SITE_DOMAIN}/assets/images/hero_crochet_table_1793792197109.webp`;
-    const activeImage = image
-      ? (image.startsWith('http') ? image : `${SITE_DOMAIN}/${image.replace(/^\/+/, '')}`)
-      : defaultImage;
+    let activeImage = defaultImage;
+    if (image) {
+      if (image.startsWith('http://') || image.startsWith('https://')) {
+        activeImage = image.replace(/^http:\/\//, 'https://');
+      } else {
+        let cleanPath = image.startsWith('/') ? image : `/${image}`;
+        if (!cleanPath.match(/\.(jpg|jpeg|png|webp|gif|svg)$/i)) {
+          cleanPath += '.jpg';
+        }
+        activeImage = `${SITE_DOMAIN}${cleanPath}`;
+      }
+    }
 
     // Helper to set or update meta tags
     const setMetaTag = (selector: string, attribute: 'name' | 'property', key: string, content: string) => {
@@ -82,6 +91,8 @@ export function SeoHead({
     setMetaTag('meta[property="og:url"]', 'property', 'og:url', canonicalUrl);
     setMetaTag('meta[property="og:locale"]', 'property', 'og:locale', 'es_ES');
     setMetaTag('meta[property="og:image"]', 'property', 'og:image', activeImage);
+    setMetaTag('meta[property="og:image:width"]', 'property', 'og:image:width', '1200');
+    setMetaTag('meta[property="og:image:height"]', 'property', 'og:image:height', '630');
 
     if (imageAlt) {
       setMetaTag('meta[property="og:image:alt"]', 'property', 'og:image:alt', imageAlt);

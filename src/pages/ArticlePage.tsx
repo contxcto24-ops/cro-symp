@@ -22,9 +22,11 @@ import {
   Gauge,
   ExternalLink,
   Moon,
-  Sun
+  Sun,
+  RefreshCw
 } from 'lucide-react';
 import { ARTICLES } from '../data/articles';
+import { AUTHOR_PROFILE, isAuthorConfigured } from '../config/author';
 import { Comment } from '../types';
 import { SeoHead } from '../components/SeoHead';
 import { AdSlot } from '../components/AdSlot';
@@ -121,11 +123,6 @@ function FormattedParagraph({ text, onNavigate }: { text: string; onNavigate: (p
               description: `${alt} - crochetsimply`
             }}
           />
-          {description && (
-            <figcaption className="p-3 text-xs text-center text-[#7A6B5F] bg-[#FAF4ED] border-t border-[#EFE3D5] italic font-normal">
-              {description}
-            </figcaption>
-          )}
         </figure>
       );
     }
@@ -303,8 +300,9 @@ export function ArticlePage({ slug, onNavigate }: ArticlePageProps) {
           description: article.excerpt,
           image: article.heroImage,
           datePublished: article.isoDate,
-          authorName: article.author.name,
-          authorJobTitle: article.author.role,
+          dateModified: article.isoUpdatedDate || article.isoDate,
+          authorName: AUTHOR_PROFILE.name || article.author.name,
+          authorJobTitle: AUTHOR_PROFILE.role || article.author.role,
           category: article.categoryLabel
         }}
       />
@@ -345,13 +343,18 @@ export function ArticlePage({ slug, onNavigate }: ArticlePageProps) {
             <span>Nivel {article.difficulty}</span>
             <span aria-hidden="true">·</span>
             <span className="flex items-center gap-1">
-              <Clock className="w-3.5 h-3.5" />
+              <Clock className="w-3.5 h-3.5 text-[#8FA998]" />
               <span>{article.readingTime}</span>
             </span>
             <span aria-hidden="true">·</span>
             <span className="flex items-center gap-1">
-              <Calendar className="w-3.5 h-3.5" />
-              <time dateTime={article.isoDate}>{article.date}</time>
+              <Calendar className="w-3.5 h-3.5 text-[#8FA998]" />
+              <span>Publicado: <time dateTime={article.isoDate}>{article.date}</time></span>
+            </span>
+            <span aria-hidden="true">·</span>
+            <span className="flex items-center gap-1">
+              <RefreshCw className="w-3.5 h-3.5 text-[#8FA998]" />
+              <span>Última actualización: <time dateTime={article.isoUpdatedDate || article.isoDate}>{article.updatedDate || article.date}</time></span>
             </span>
           </div>
 
@@ -366,18 +369,26 @@ export function ArticlePage({ slug, onNavigate }: ArticlePageProps) {
 
           {/* AUTORA Y ACCIONES */}
           <div className="flex flex-wrap items-center justify-between gap-4 pt-3 pb-4 border-y border-[#EFE3D5] text-xs">
-            <div className="flex items-center gap-3">
-              <img
-                src={article.author.avatar}
-                alt={article.author.name}
-                className="w-10 h-10 rounded-full object-cover border border-[#DFCFC1]"
-                referrerPolicy="no-referrer"
-              />
-              <div>
-                <p className="font-semibold text-[#3D352E]">{article.author.name}</p>
-                <p className="text-[#8C7A6B] text-[11px]">{article.author.role}</p>
+            {isAuthorConfigured(AUTHOR_PROFILE) ? (
+              <div className="flex items-center gap-3">
+                {AUTHOR_PROFILE.avatar && (
+                  <img
+                    src={AUTHOR_PROFILE.avatar}
+                    alt={AUTHOR_PROFILE.name}
+                    className="w-10 h-10 rounded-full object-cover border border-[#DFCFC1]"
+                    referrerPolicy="no-referrer"
+                  />
+                )}
+                <div>
+                  <p className="font-semibold text-[#3D352E]">{AUTHOR_PROFILE.name}</p>
+                  {AUTHOR_PROFILE.role && <p className="text-[#8C7A6B] text-[11px]">{AUTHOR_PROFILE.role}</p>}
+                </div>
               </div>
-            </div>
+            ) : (
+              <div className="text-[#8C7A6B] italic font-medium">
+                Patrón gratis de crochetsimply
+              </div>
+            )}
 
             <div className="flex items-center gap-2 no-print">
               <button
@@ -422,7 +433,7 @@ export function ArticlePage({ slug, onNavigate }: ArticlePageProps) {
           <p className="text-2xl font-bold font-serif">crochetsimply</p>
           <p className="text-base font-semibold">{article.title}</p>
           <p className="text-xs text-gray-600">
-            Diseñado por {article.author.name} ({article.author.role}) · Publicado el {article.date} · crochetsimply.online
+            Diseñado por {article.author.name} ({article.author.role}) · Publicado el {article.date} · www.crochetsimply.online
           </p>
         </div>
 
@@ -774,26 +785,54 @@ export function ArticlePage({ slug, onNavigate }: ArticlePageProps) {
           </aside>
         )}
 
-        {/* CAJA DE LA AUTORA */}
-        <section aria-labelledby="autora-heading" className="bg-white p-6 rounded-2xl border border-[#E8DDD0] flex flex-col sm:flex-row items-center sm:items-start gap-4">
-          <img
-            src={article.author.avatar}
-            alt={article.author.name}
-            className="w-16 h-16 rounded-full object-cover border-2 border-[#8FA998] shrink-0"
-            referrerPolicy="no-referrer"
-          />
-          <div className="space-y-1 text-center sm:text-left">
-            <span className="text-[10px] uppercase tracking-wider font-semibold text-[#8FA998]">
-              Sobre la creadora del patrón
-            </span>
-            <h3 id="autora-heading" className="font-heading font-bold text-lg text-[#3D352E]">
-              {article.author.name}
-            </h3>
-            <p className="text-xs text-[#6B5C4F] leading-relaxed">
-              {article.author.bio}
+        {/* BLOQUE OPCIONAL: MI CONSEJO PERSONAL */}
+        {article.personalTip && article.personalTip.trim() !== '' && (
+          <section aria-labelledby="consejo-personal-heading" className="p-5 sm:p-6 bg-[#FAF4ED] border-l-4 border-[#8FA998] rounded-r-2xl shadow-xs space-y-2">
+            <div className="flex items-center gap-2 text-[#7A9584]">
+              <Sparkles className="w-5 h-5 text-[#8FA998]" />
+              <h3 id="consejo-personal-heading" className="font-heading font-semibold text-base text-[#3D352E]">
+                Mi consejo personal
+              </h3>
+            </div>
+            <p className="text-xs sm:text-sm text-[#6B5C4F] leading-relaxed whitespace-pre-line">
+              {article.personalTip}
             </p>
-          </div>
-        </section>
+          </section>
+        )}
+
+        {/* CAJA DE LA AUTORA (SOLO SI TIENE CONTENIDO RELLENADO) */}
+        {isAuthorConfigured(AUTHOR_PROFILE) && (
+          <section aria-labelledby="autora-heading" className="bg-white p-6 rounded-2xl border border-[#E8DDD0] flex flex-col sm:flex-row items-center sm:items-start gap-4">
+            {AUTHOR_PROFILE.avatar && (
+              <img
+                src={AUTHOR_PROFILE.avatar}
+                alt={AUTHOR_PROFILE.name || 'Foto de la autora'}
+                className="w-16 h-16 rounded-full object-cover border-2 border-[#8FA998] shrink-0"
+                referrerPolicy="no-referrer"
+              />
+            )}
+            <div className="space-y-1 text-center sm:text-left">
+              <span className="text-[10px] uppercase tracking-wider font-semibold text-[#8FA998]">
+                Sobre la creadora del patrón
+              </span>
+              {AUTHOR_PROFILE.name && (
+                <h3 id="autora-heading" className="font-heading font-bold text-lg text-[#3D352E]">
+                  {AUTHOR_PROFILE.name}
+                </h3>
+              )}
+              {AUTHOR_PROFILE.shortBio && (
+                <p className="text-xs text-[#6B5C4F] leading-relaxed">
+                  {AUTHOR_PROFILE.shortBio}
+                </p>
+              )}
+              {AUTHOR_PROFILE.crochetExperience && (
+                <p className="text-xs text-[#8C7A6B] pt-2 border-t border-[#F5EDE3] mt-2 italic">
+                  <strong>Mi experiencia con el crochet:</strong> {AUTHOR_PROFILE.crochetExperience}
+                </p>
+              )}
+            </div>
+          </section>
+        )}
 
         {/* PIN VERTICAL 2:3 PARA PINTEREST */}
         {article.pinterestImage && (
