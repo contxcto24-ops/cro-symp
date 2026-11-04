@@ -20,7 +20,9 @@ import {
   Sparkles,
   Scissors,
   Gauge,
-  ExternalLink
+  ExternalLink,
+  Moon,
+  Sun
 } from 'lucide-react';
 import { ARTICLES } from '../data/articles';
 import { Comment } from '../types';
@@ -197,6 +199,7 @@ export function ArticlePage({ slug, onNavigate }: ArticlePageProps) {
   // Checked state for materials
   const [checkedMaterials, setCheckedMaterials] = useState<Record<number, boolean>>({});
   const [copyFeedback, setCopyFeedback] = useState(false);
+  const [readingMode, setReadingMode] = useState(false);
 
   // Comments state
   const [comments, setComments] = useState<Comment[]>([
@@ -306,7 +309,7 @@ export function ArticlePage({ slug, onNavigate }: ArticlePageProps) {
         }}
       />
 
-      <article className="max-w-4xl mx-auto px-4 sm:px-6 py-6 md:py-10 space-y-8">
+      <article className={`max-w-4xl mx-auto px-4 sm:px-6 py-6 md:py-10 space-y-8 transition-colors duration-300 ${readingMode ? 'bg-[#2C2621] text-[#EADBC8] rounded-3xl my-6 shadow-2xl' : ''}`}>
         {/* MIGAS DE PAN VISIBLES Y BOTÓN VOLVER */}
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 no-print border-b border-[#EFE3D5] pb-3">
           <Breadcrumbs
@@ -377,6 +380,20 @@ export function ArticlePage({ slug, onNavigate }: ArticlePageProps) {
             </div>
 
             <div className="flex items-center gap-2 no-print">
+              <button
+                type="button"
+                onClick={() => setReadingMode(!readingMode)}
+                className={`px-3 py-1.5 rounded-lg border inline-flex items-center gap-1.5 font-medium transition-colors ${
+                  readingMode
+                    ? 'bg-[#4A3E34] border-[#6B5C4F] text-[#EADBC8]'
+                    : 'border-[#DFCFC1] bg-white hover:bg-[#FAF4ED] text-[#4A3E34]'
+                }`}
+                title="Modo lectura nocturna (sepia oscuro)"
+              >
+                {readingMode ? <Sun className="w-3.5 h-3.5 text-amber-300" /> : <Moon className="w-3.5 h-3.5" />}
+                <span>{readingMode ? 'Modo Normal' : 'Modo Lectura'}</span>
+              </button>
+
               <button
                 type="button"
                 onClick={() => window.print()}
