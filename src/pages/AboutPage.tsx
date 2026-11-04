@@ -45,7 +45,7 @@ export function AboutPage({ onNavigate }: AboutPageProps) {
         {/* FOTO DEL TALLER */}
         <figure className="rounded-2xl overflow-hidden border border-[#E8DDD0] shadow-sm bg-[#FAF4ED]">
           <ResponsiveImage
-            basePath="/src/assets/images/crochet_workshop_studio_1793792199359"
+            basePath="/assets/images/crochet_workshop_studio_1793792199359"
             alt="Atelier artesanal de crochet con estanterías de madejas naturales de colores, manta tejida a ganchillo y plantas"
             width={1200}
             height={896}

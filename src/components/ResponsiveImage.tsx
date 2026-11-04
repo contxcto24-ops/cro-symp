@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { ImageOff } from 'lucide-react';
 
 interface ResponsiveImageProps {
-  basePath: string; // e.g. "/src/assets/images/amigurumi_bear_toy_1793792197834"
+  basePath: string; // e.g. "/assets/images/amigurumi_bear_toy_1793792197834"
   alt: string;
   width: number;
   height: number;

@@ -72,27 +72,27 @@ function resolveInternalRoute(url: string): string {
 function pickRelevantPhoto(desc: string, altText: string): string {
   const text = (desc + ' ' + altText).toLowerCase();
   if (text.includes('cadeneta') || text.includes('nudo') || text.includes('eslabón') || text.includes('espiga') || text.includes('lomito')) {
-    return '/src/assets/images/crochet_slip_knot_chain_1793795756670';
+    return '/assets/images/crochet_slip_knot_chain_1793795756670';
   }
   if (text.includes('agarre') || text.includes('sostener') || text.includes('cuchillo') || text.includes('lápiz') || text.includes('zurda') || text.includes('zurdo') || text.includes('mano') || text.includes('dedo') || text.includes('tensar')) {
-    return '/src/assets/images/holding_crochet_hook_1793795756244';
+    return '/assets/images/holding_crochet_hook_1793795756244';
   }
   if (text.includes('kit') || text.includes('comprar') || text.includes('estuche') || text.includes('tijera') || text.includes('marcador') || text.includes('aguja lanera')) {
-    return '/src/assets/images/crochet_starter_kit_1793795743535';
+    return '/assets/images/crochet_starter_kit_1793795743535';
   }
   if (text.includes('etiqueta') || text.includes('muestra') || text.includes('grosor') || text.includes('número de aguja') || text.includes('talla') || text.includes('algodón peinado')) {
-    return '/src/assets/images/yarn_hook_guide_1793795743901';
+    return '/assets/images/yarn_hook_guide_1793795743901';
   }
   if (text.includes('café') || text.includes('taza') || text.includes('bodegón') || text.includes('cesta') || text.includes('cuaderno') || text.includes('taller')) {
-    return '/src/assets/images/crochet_workshop_studio_1793792199359';
+    return '/assets/images/crochet_workshop_studio_1793792199359';
   }
   if (text.includes('madeja') || text.includes('ovillo') || text.includes('hilo') || text.includes('fibra')) {
-    return '/src/assets/images/yarn_skeins_palette_1793792198935';
+    return '/assets/images/yarn_skeins_palette_1793792198935';
   }
   if (text.includes('sillón') || text.includes('postura') || text.includes('relajada') || text.includes('comenzar') || text.includes('mesa')) {
-    return '/src/assets/images/crochet_beginner_guide_1793795743138';
+    return '/assets/images/crochet_beginner_guide_1793795743138';
   }
-  return '/src/assets/images/hero_crochet_table_1793792197109';
+  return '/assets/images/hero_crochet_table_1793792197109';
 }
 
 function FormattedParagraph({ text, onNavigate }: { text: string; onNavigate: (path: string) => void }) {

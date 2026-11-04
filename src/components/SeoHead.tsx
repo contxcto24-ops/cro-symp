@@ -55,7 +55,7 @@ export function SeoHead({
       : `/${targetPath.replace(/^\/+|\/+$/g, '')}`;
     const canonicalUrl = `${SITE_DOMAIN}${cleanSubPath}`;
 
-    const defaultImage = `${SITE_DOMAIN}/src/assets/images/hero_crochet_table_1793792197109.webp`;
+    const defaultImage = `${SITE_DOMAIN}/assets/images/hero_crochet_table_1793792197109.webp`;
     const activeImage = image
       ? (image.startsWith('http') ? image : `${SITE_DOMAIN}/${image.replace(/^\/+/, '')}`)
       : defaultImage;
@@ -182,7 +182,7 @@ export function SeoHead({
           'name': SITE_NAME,
           'logo': {
             '@type': 'ImageObject',
-            'url': `${SITE_DOMAIN}/src/assets/images/hero_crochet_table_1793792197109-640w.webp`
+            'url': `${SITE_DOMAIN}/assets/images/hero_crochet_table_1793792197109-640w.webp`
           }
         },
         'articleSection': articleData.category || 'Crochet'

@@ -73,7 +73,7 @@ export function HomePage({ onNavigate }: HomePageProps) {
           <div className="lg:col-span-5 relative">
             <div className="relative rounded-2xl overflow-hidden shadow-lg border border-[#E8DDD0] bg-[#FAF4ED] aspect-[16/10] sm:aspect-[16/10] lg:aspect-[4/3]">
               <ResponsiveImage
-                basePath="/src/assets/images/hero_crochet_table_1793792197109"
+                basePath="/assets/images/hero_crochet_table_1793792197109"
                 alt="Mesa de trabajo artesanal con ovillos de algodón en tonos rosa pastel y verde salvia, agujas de bambú y taza de té"
                 width={1200}
                 height={900}
