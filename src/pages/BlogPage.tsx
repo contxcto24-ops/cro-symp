@@ -100,6 +100,24 @@ export function BlogPage({ initialCategory = 'todos', initialQuery = '', onNavig
                 placeholder="Buscar patrones, puntos o hilos..."
                 className="w-full pl-10 pr-4 py-2.5 text-xs sm:text-sm bg-white border border-[#DFCFC1] rounded-xl focus:outline-none focus:border-[#8FA998] text-[#3D352E] shadow-2xs"
               />
+              {/* Autocomplete suggestions */}
+              {searchQuery.length >= 2 && (
+                <div className="absolute top-full left-0 right-0 mt-1 bg-white border border-[#DFCFC1] rounded-xl shadow-lg z-20 overflow-hidden">
+                  {ARTICLES.filter((a) => a.title.toLowerCase().includes(searchQuery.toLowerCase())).slice(0, 5).map((a) => (
+                    <button
+                      key={a.id}
+                      type="button"
+                      onClick={() => onNavigate(`/blog/${a.slug}`)}
+                      className="w-full text-left px-4 py-2 text-xs text-[#3D352E] hover:bg-[#FAF4ED] transition-colors"
+                    >
+                      {a.title}
+                    </button>
+                  ))}
+                  {ARTICLES.filter((a) => a.title.toLowerCase().includes(searchQuery.toLowerCase())).length === 0 && (
+                    <div className="px-4 py-2 text-xs text-[#8C7A6B]">No hay sugerencias</div>
+                  )}
+                </div>
+              )}
               {searchQuery && (
                 <button
                   type="button"
@@ -108,7 +126,8 @@ export function BlogPage({ initialCategory = 'todos', initialQuery = '', onNavig
                 >
                   Limpiar
                 </button>
-              )}
+              )
+              }
             </div>
 
             {/* Filtro por dificultad */}

@@ -1,6 +1,7 @@
 import { Article } from '../types';
 import { AUTHORS } from './authors';
 import { PRIMEROS_PASOS_ARTICLES } from './primerosPasosArticles';
+import { PUNTOS_BASICOS_ARTICLES } from './puntosBasicosArticles';
 
 export { AUTHORS };
 
@@ -27,8 +28,8 @@ const BASE_ARTICLES: Article[] = [
     date: '18 de Octubre, 2026',
     isoDate: '2026-10-18',
     author: AUTHORS.clara,
-    heroImage: '/src/assets/images/amigurumi_bear_toy_1793792197834.jpg',
-    pinterestImage: '/src/assets/images/pin_amigurumi_bear_1793793547292.jpg',
+    heroImage: '/assets/images/amigurumi_bear_toy_1793792197834.jpg',
+    pinterestImage: '/assets/images/pin_amigurumi_bear_1793793547292.jpg',
     imageAlt: 'Pequeño osito de peluche tejido a ganchillo sentado en tela de lino junto a una madeja de algodón y aguja de madera',
     estimatedTime: '4 - 5 horas de tejido',
     hookSize: '2.5 mm',
@@ -177,8 +178,8 @@ const BASE_ARTICLES: Article[] = [
     date: '24 de Octubre, 2026',
     isoDate: '2026-10-24',
     author: AUTHORS.sofia,
-    heroImage: '/src/assets/images/crochet_summer_top_1793792197726.jpg',
-    pinterestImage: '/src/assets/images/pin_crochet_summer_top_1793793547258.jpg',
+    heroImage: '/assets/images/crochet_summer_top_1793792197726.jpg',
+    pinterestImage: '/assets/images/pin_crochet_summer_top_1793793547258.jpg',
     imageAlt: 'Top halter de verano tejido a ganchillo en verde salvia y crudo colgado en percha de madera frente a pared clara',
     estimatedTime: '8 - 10 horas de tejido',
     hookSize: '3.0 mm',
@@ -291,8 +292,8 @@ const BASE_ARTICLES: Article[] = [
     date: '2 de Noviembre, 2026',
     isoDate: '2026-11-02',
     author: AUTHORS.clara,
-    heroImage: '/src/assets/images/yarn_skeins_palette_1793792198935.jpg',
-    pinterestImage: '/src/assets/images/pin_yarn_guide_palette_1793793546805.jpg',
+    heroImage: '/assets/images/yarn_skeins_palette_1793792198935.jpg',
+    pinterestImage: '/assets/images/pin_yarn_guide_palette_1793793546805.jpg',
     imageAlt: 'Cesta de mimbre con madejas de hilo en tonos rosa empolvado, verde salvia, crudo y melocotón',
     estimatedTime: '9 min de lectura',
     hookSize: 'Todas las medidas',
@@ -383,5 +384,6 @@ const BASE_ARTICLES: Article[] = [
 
 export const ARTICLES: Article[] = [
   ...PRIMEROS_PASOS_ARTICLES,
+  ...PUNTOS_BASICOS_ARTICLES,
   ...BASE_ARTICLES
 ];

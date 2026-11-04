@@ -1,4 +1,4 @@
-export type CategoryId = 'todos' | 'primeros-pasos' | 'patrones' | 'tutoriales' | 'materiales' | 'amigurumis' | 'ropa';
+export type CategoryId = 'todos' | 'primeros-pasos' | 'puntos-basicos' | 'patrones' | 'tutoriales' | 'materiales' | 'amigurumis' | 'ropa';
 
 export type DifficultyLevel = 'Principiante' | 'Intermedio' | 'Avanzado';
 
