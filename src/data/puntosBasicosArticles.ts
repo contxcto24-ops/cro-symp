@@ -15,7 +15,7 @@ export const PUNTOS_BASICOS_ARTICLES: Article[] = [
     date: '4 de Noviembre, 2026',
     isoDate: '2026-11-04',
     author: AUTHORS.clara,
-    heroImage: '/assets/images/punto_bajo_alto_1793795743138',
+    heroImage: '/assets/images/crochet_workshop_studio_1793792199359',
     imageAlt: 'Muestrario de puntos de crochet mostrando punto bajo, medio alto y punto alto',
     excerpt: '¿Te lías con los nombres de los puntos? Te enseño la diferencia física y estética entre el punto bajo, el punto medio alto y el punto alto, y por qué cada uno tiene su función.',
     tableOfContents: [
@@ -99,7 +99,7 @@ export const PUNTOS_BASICOS_ARTICLES: Article[] = [
     date: '4 de Noviembre, 2026',
     isoDate: '2026-11-04',
     author: AUTHORS.clara,
-    heroImage: '/assets/images/anillo_magico_1793795743138',
+    heroImage: '/assets/images/crochet_workshop_studio_1793792199359',
     imageAlt: 'Manos haciendo un anillo mágico de hilo',
     excerpt: '¿Te frustra el agujero central al empezar amigurumis? El anillo mágico es tu solución para cerrarlo completamente. Paso a paso.',
     tableOfContents: [
@@ -139,7 +139,7 @@ export const PUNTOS_BASICOS_ARTICLES: Article[] = [
     date: '4 de Noviembre, 2026',
     isoDate: '2026-11-04',
     author: AUTHORS.clara,
-    heroImage: '/assets/images/aumentos_dism_1793795743138',
+    heroImage: '/assets/images/crochet_workshop_studio_1793792199359',
     imageAlt: 'Muestra de aumentos y disminuciones',
     excerpt: '¿Se ven huecos en tus aumentos o disminuciones? Aprende las técnicas profesionales para hacerlas invisibles.',
     tableOfContents: [
@@ -174,7 +174,7 @@ export const PUNTOS_BASICOS_ARTICLES: Article[] = [
     date: '4 de Noviembre, 2026',
     isoDate: '2026-11-04',
     author: AUTHORS.clara,
-    heroImage: '/assets/images/glosario_crochet_1793795743138',
+    heroImage: '/assets/images/crochet_workshop_studio_1793792199359',
     imageAlt: 'Lista de abreviaturas',
     excerpt: '¿Qué significa pb, pa, AM? Este glosario te ayudará a descifrar cualquier patrón.',
     tableOfContents: [
@@ -203,7 +203,7 @@ export const PUNTOS_BASICOS_ARTICLES: Article[] = [
     date: '4 de Noviembre, 2026',
     isoDate: '2026-11-04',
     author: AUTHORS.clara,
-    heroImage: '/assets/images/errores_crochet_1793795743138',
+    heroImage: '/assets/images/crochet_workshop_studio_1793792199359',
     imageAlt: 'Tejido con error',
     excerpt: '¿El tejido se curva? ¿Pierdes puntos? Aquí tienes las soluciones a los errores más frecuentes.',
     tableOfContents: [
