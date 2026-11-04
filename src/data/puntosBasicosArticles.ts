@@ -15,7 +15,7 @@ export const PUNTOS_BASICOS_ARTICLES: Article[] = [
     date: '4 de Noviembre, 2026',
     isoDate: '2026-11-04',
     author: AUTHORS.clara,
-    heroImage: '/assets/images/crochet_workshop_studio_1793792199359',
+    heroImage: '/assets/images/yarn_hook_guide_1793795743901',
     imageAlt: 'Muestrario de puntos de crochet mostrando punto bajo, medio alto y punto alto',
     excerpt: '¿Te lías con los nombres de los puntos? Te enseño la diferencia física y estética entre el punto bajo, el punto medio alto y el punto alto, y por qué cada uno tiene su función.',
     tableOfContents: [
@@ -99,7 +99,7 @@ export const PUNTOS_BASICOS_ARTICLES: Article[] = [
     date: '4 de Noviembre, 2026',
     isoDate: '2026-11-04',
     author: AUTHORS.clara,
-    heroImage: '/assets/images/crochet_workshop_studio_1793792199359',
+    heroImage: '/assets/images/crochet_slip_knot_chain_1793795756670',
     imageAlt: 'Manos haciendo un anillo mágico de hilo',
     excerpt: '¿Te frustra el agujero central al empezar amigurumis? El anillo mágico es tu solución para cerrarlo completamente. Paso a paso.',
     tableOfContents: [
@@ -139,7 +139,7 @@ export const PUNTOS_BASICOS_ARTICLES: Article[] = [
     date: '4 de Noviembre, 2026',
     isoDate: '2026-11-04',
     author: AUTHORS.clara,
-    heroImage: '/assets/images/crochet_workshop_studio_1793792199359',
+    heroImage: '/assets/images/yarn_skeins_palette_1793792198935',
     imageAlt: 'Muestra de aumentos y disminuciones',
     excerpt: '¿Se ven huecos en tus aumentos o disminuciones? Aprende las técnicas profesionales para hacerlas invisibles.',
     tableOfContents: [
@@ -203,7 +203,7 @@ export const PUNTOS_BASICOS_ARTICLES: Article[] = [
     date: '4 de Noviembre, 2026',
     isoDate: '2026-11-04',
     author: AUTHORS.clara,
-    heroImage: '/assets/images/crochet_workshop_studio_1793792199359',
+    heroImage: '/assets/images/crochet_beginner_guide_1793795743138',
     imageAlt: 'Tejido con error',
     excerpt: '¿El tejido se curva? ¿Pierdes puntos? Aquí tienes las soluciones a los errores más frecuentes.',
     tableOfContents: [
