@@ -1,0 +1,6 @@
+{
+  "name": "crochetsimply - Patrones y Tutoriales de Crochet",
+  "description": "Sitio web en español de crochet para principiantes y aficionadas al amigurumi y la ropa tejida a ganchillo.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
