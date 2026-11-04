@@ -4,6 +4,7 @@
  */
 
 import React, { useState, useEffect } from 'react';
+import { Analytics } from '@vercel/analytics/react';
 import { Header } from './components/Header';
 import { Footer } from './components/Footer';
 import { CookieBanner } from './components/CookieBanner';
@@ -159,6 +160,9 @@ export default function App() {
       >
         <Cookie className="w-4 h-4 text-[#8FA998]" />
       </button>
+
+      {/* Vercel Web Analytics */}
+      <Analytics />
     </div>
   );
 }
