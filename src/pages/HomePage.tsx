@@ -85,58 +85,6 @@ export function HomePage({ onNavigate }: HomePageProps) {
           </div>
         </section>
 
-        {/* CATEGORÍAS DESTACADAS */}
-        <section aria-labelledby="categorias-title" className="space-y-6 pt-4">
-          <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-2 border-b border-[#EFE3D5] pb-4">
-            <div>
-              <span className="text-xs uppercase tracking-widest font-semibold text-[#8C7A6B]">
-                Encuentra tu próximo proyecto
-              </span>
-              <h2 id="categorias-title" className="text-2xl sm:text-3xl font-heading font-bold text-[#3D352E] mt-1">
-                Categorías Destacadas
-              </h2>
-            </div>
-            <button
-              type="button"
-              onClick={() => onNavigate('/blog')}
-              className="text-xs font-semibold text-[#B86B5D] hover:underline flex items-center gap-1"
-            >
-              <span>Ver todas las categorías</span>
-              <ArrowRight className="w-3.5 h-3.5" />
-            </button>
-          </div>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-            {CATEGORIES.map((cat) => {
-              const count = ARTICLES.filter((a) => a.category === cat.id).length;
-              return (
-                <div
-                  key={cat.id}
-                  onClick={() => onNavigate(`/blog?cat=${cat.id}`)}
-                  className="group bg-white p-5 rounded-2xl border border-[#E8DDD0] hover:border-[#8FA998] hover:shadow-md transition-all cursor-pointer flex flex-col justify-between"
-                >
-                  <div>
-                    <div className="flex items-center justify-between mb-2">
-                      <h3 className="font-heading font-semibold text-lg text-[#3D352E] group-hover:text-[#8FA998] transition-colors">
-                        {cat.label}
-                      </h3>
-                      <span className="text-xs text-[#8C7A6B] font-mono tabular-nums">
-                        {count > 0 ? `${count} ${count === 1 ? 'guía' : 'guías'}` : 'Próximamente'}
-                      </span>
-                    </div>
-                    <p className="text-xs text-[#6B5C4F] leading-relaxed">
-                      {cat.description}
-                    </p>
-                  </div>
-                  <div className="mt-4 pt-3 border-t border-[#F5EDE3] flex items-center text-xs font-medium text-[#8C7A6B] group-hover:text-[#3D352E] transition-colors">
-                    <span>Explorar categoría</span>
-                    <ArrowRight className="w-3.5 h-3.5 ml-1 group-hover:translate-x-1 transition-transform" />
-                  </div>
-                </div>
-              );
-            })}
-          </div>
-        </section>
 
         {/* SERIE DESTACADA: PRIMEROS PASOS EN CROCHET */}
         <section aria-labelledby="primeros-pasos-title" className="bg-[#FAF4ED] p-6 sm:p-8 rounded-3xl border border-[#DFCFC1] space-y-6">
@@ -284,8 +232,61 @@ export function HomePage({ onNavigate }: HomePageProps) {
           </div>
         </section>
 
+        {/* CATEGORÍAS DESTACADAS */}
+        <section aria-labelledby="categorias-title" className="space-y-6 pt-4">
+          <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-2 border-b border-[#EFE3D5] pb-4">
+            <div>
+              <span className="text-xs uppercase tracking-widest font-semibold text-[#8C7A6B]">
+                Encuentra tu próximo proyecto
+              </span>
+              <h2 id="categorias-title" className="text-2xl sm:text-3xl font-heading font-bold text-[#3D352E] mt-1">
+                Categorías Destacadas
+              </h2>
+            </div>
+            <button
+              type="button"
+              onClick={() => onNavigate('/blog')}
+              className="text-xs font-semibold text-[#B86B5D] hover:underline flex items-center gap-1"
+            >
+              <span>Ver todas las categorías</span>
+              <ArrowRight className="w-3.5 h-3.5" />
+            </button>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            {CATEGORIES.map((cat) => {
+              const count = ARTICLES.filter((a) => a.category === cat.id).length;
+              return (
+                <div
+                  key={cat.id}
+                  onClick={() => onNavigate(`/blog?cat=${cat.id}`)}
+                  className="group bg-white p-5 rounded-2xl border border-[#E8DDD0] hover:border-[#8FA998] hover:shadow-md transition-all cursor-pointer flex flex-col justify-between"
+                >
+                  <div>
+                    <div className="flex items-center justify-between mb-2">
+                      <h3 className="font-heading font-semibold text-lg text-[#3D352E] group-hover:text-[#8FA998] transition-colors">
+                        {cat.label}
+                      </h3>
+                      <span className="text-xs text-[#8C7A6B] font-mono tabular-nums">
+                        {count > 0 ? `${count} ${count === 1 ? 'guía' : 'guías'}` : 'Próximamente'}
+                      </span>
+                    </div>
+                    <p className="text-xs text-[#6B5C4F] leading-relaxed">
+                      {cat.description}
+                    </p>
+                  </div>
+                  <div className="mt-4 pt-3 border-t border-[#F5EDE3] flex items-center text-xs font-medium text-[#8C7A6B] group-hover:text-[#3D352E] transition-colors">
+                    <span>Explorar categoría</span>
+                    <ArrowRight className="w-3.5 h-3.5 ml-1 group-hover:translate-x-1 transition-transform" />
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        </section>
+
         {/* IN-CONTENT AD SLOT BETWEEN SECTIONS */}
-        <AdSlot type="in-article" />
+        {/* <AdSlot type="in-article" /> */}
 
         {/* LEAD MAGNET / GUÍA GRATUITA */}
         <section

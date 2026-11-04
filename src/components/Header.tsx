@@ -51,7 +51,7 @@ export function Header({ currentPath, onNavigate }: HeaderProps) {
   return (
     <header className="w-full bg-[#FBF7F0]/95 backdrop-blur-md sticky top-0 z-40 border-b border-[#EFE3D5]">
       {/* 1. Leaderboard Ad in header zone */}
-      <AdSlot type="header" className="border-b border-[#F0E6DA]/60" />
+      {/* <AdSlot type="header" className="border-b border-[#F0E6DA]/60" /> */}
 
       {/* 2. Top Bar Navigation Contract: 3 Zones */}
       <div className="max-w-6xl mx-auto px-4 sm:px-6 py-3.5 flex items-center justify-between gap-6 sm:gap-8">

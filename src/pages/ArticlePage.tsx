@@ -30,6 +30,7 @@ import { Breadcrumbs } from '../components/Breadcrumbs';
 import { ResponsiveImage } from '../components/ResponsiveImage';
 import { SocialShareBar } from '../components/SocialShareBar';
 import { NewsletterBox } from '../components/NewsletterBox';
+import { BackToTop } from '../components/BackToTop';
 
 interface ArticlePageProps {
   slug: string;
@@ -594,7 +595,7 @@ export function ArticlePage({ slug, onNavigate }: ArticlePageProps) {
         )}
 
         {/* ESPACIO DE PUBLICIDAD DENTRO DEL ARTÍCULO */}
-        <AdSlot type="in-article" />
+        {/* <AdSlot type="in-article" /> */}
 
         {/* SECCIONES Y PASOS NUMERADOS */}
         <div className="space-y-10 pt-2">
@@ -924,6 +925,7 @@ export function ArticlePage({ slug, onNavigate }: ArticlePageProps) {
           </section>
         )}
       </article>
+      <BackToTop />
     </>
   );
 }

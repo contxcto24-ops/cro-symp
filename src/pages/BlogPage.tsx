@@ -6,6 +6,7 @@ import { SeoHead } from '../components/SeoHead';
 import { AdSlot } from '../components/AdSlot';
 import { Breadcrumbs } from '../components/Breadcrumbs';
 import { ResponsiveImage } from '../components/ResponsiveImage';
+import { BackToTop } from '../components/BackToTop';
 
 interface BlogPageProps {
   initialCategory?: CategoryId;
@@ -311,7 +312,7 @@ export function BlogPage({ initialCategory = 'todos', initialQuery = '', onNavig
             </div>
 
             {/* ESPACIO DE PUBLICIDAD EN BARRA LATERAL */}
-            <AdSlot type="sidebar" />
+            {/* <AdSlot type="sidebar" /> */}
 
             {/* Widget: Recomendación de material */}
             <div className="bg-[#FAF4ED] p-5 rounded-2xl border border-[#E8DDD0] space-y-3">
@@ -335,6 +336,7 @@ export function BlogPage({ initialCategory = 'todos', initialQuery = '', onNavig
           </aside>
         </div>
       </main>
+      <BackToTop />
     </>
   );
 }
